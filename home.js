@@ -1,5 +1,9 @@
 const diaryEntries = document.getElementById('diaryEntries');
 const loadingIndicator = document.getElementById('loadingIndicator');
+function formatDate(dateString) {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString('en-US', options);
+}
 
 // Load entries from Google Sheets
 async function loadEntries() {

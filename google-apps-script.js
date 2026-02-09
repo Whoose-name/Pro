@@ -9,7 +9,7 @@
 // 7. Set "Execute as" to "Me" and "Who has access" to "Anyone"
 // 8. Copy the Web App URL and paste it in script.js as GOOGLE_SCRIPT_URL
 
-const SHEET_ID = 'YOUR_GOOGLE_SHEET_ID_HERE';
+const SHEET_ID = '1mptRm3MOJjSoWNnd03DxOOdYiXyLzGkAb72auFTROi0';
 const SHEET_NAME = 'MovieDiary';
 
 function doGet(e) {
@@ -65,9 +65,10 @@ function getEntries() {
     const data = sheet.getDataRange().getValues();
     const entries = [];
     
-    // Skip header row
-    for (let i = data.length - 1; i > 0; i--) {
+    // Skip header row, iterate normally (not reversed)
+    for (let i = 1; i < data.length; i++) {
       entries.push({
+        rowIndex: i + 1, // Store actual row number for deletion
         timestamp: data[i][0],
         title: data[i][1],
         date: data[i][2],
@@ -131,15 +132,21 @@ function deleteEntry(data) {
       })).setMimeType(ContentService.MimeType.JSON);
     }
     
-    const allData = sheet.getDataRange().getValues();
-    
-    // Find and delete the matching row
-    for (let i = allData.length - 1; i > 0; i--) {
-      if (allData[i][1] === data.title && 
-          allData[i][2] === data.date && 
-          allData[i][3] === data.rating) {
-        sheet.deleteRow(i + 1);
-        break;
+    // Use rowIndex if provided, otherwise search
+    if (data.rowIndex) {
+      sheet.deleteRow(data.rowIndex);
+    } else {
+      const allData = sheet.getDataRange().getValues();
+      
+      // Find and delete the matching row
+      for (let i = 1; i < allData.length; i++) {
+        if (allData[i][1] === data.title && 
+            allData[i][2] === data.date && 
+            allData[i][3] === data.rating &&
+            allData[i][4] === data.remarks) {
+          sheet.deleteRow(i + 1);
+          break;
+        }
       }
     }
     
@@ -167,18 +174,27 @@ function updateEntry(data) {
       })).setMimeType(ContentService.MimeType.JSON);
     }
     
-    const allData = sheet.getDataRange().getValues();
-    
-    // Find and update the matching row
-    for (let i = allData.length - 1; i > 0; i--) {
-      if (allData[i][1] === data.oldTitle && 
-          allData[i][2] === data.oldDate && 
-          allData[i][3] === data.oldRating) {
-        sheet.getRange(i + 1, 2).setValue(data.title);
-        sheet.getRange(i + 1, 3).setValue(data.date);
-        sheet.getRange(i + 1, 4).setValue(data.rating);
-        sheet.getRange(i + 1, 5).setValue(data.remarks);
-        break;
+    // Use rowIndex if provided, otherwise search
+    if (data.rowIndex) {
+      sheet.getRange(data.rowIndex, 2).setValue(data.title);
+      sheet.getRange(data.rowIndex, 3).setValue(data.date);
+      sheet.getRange(data.rowIndex, 4).setValue(data.rating);
+      sheet.getRange(data.rowIndex, 5).setValue(data.remarks);
+    } else {
+      const allData = sheet.getDataRange().getValues();
+      
+      // Find and update the matching row
+      for (let i = 1; i < allData.length; i++) {
+        if (allData[i][1] === data.oldTitle && 
+            allData[i][2] === data.oldDate && 
+            allData[i][3] === data.oldRating &&
+            allData[i][4] === data.oldRemarks) {
+          sheet.getRange(i + 1, 2).setValue(data.title);
+          sheet.getRange(i + 1, 3).setValue(data.date);
+          sheet.getRange(i + 1, 4).setValue(data.rating);
+          sheet.getRange(i + 1, 5).setValue(data.remarks);
+          break;
+        }
       }
     }
     

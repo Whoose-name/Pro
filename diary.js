@@ -116,9 +116,11 @@ async function deleteEntry(index) {
             },
             body: JSON.stringify({
                 action: 'delete',
+                rowIndex: entry.rowIndex,
                 title: entry.title,
                 date: entry.date,
-                rating: entry.rating
+                rating: entry.rating,
+                remarks: entry.remarks
             })
         });
         
@@ -134,6 +136,7 @@ async function deleteEntry(index) {
         // Re-render or show empty state
         if (entries.length === 0) {
             bookWrapper.style.display = 'none';
+            sortBtn.style.display = 'none';
             emptyState.style.display = 'block';
         } else {
             renderPages();
@@ -253,9 +256,11 @@ async function saveEdit(index) {
             },
             body: JSON.stringify({
                 action: 'update',
+                rowIndex: entry.rowIndex,
                 oldTitle: entry.title,
                 oldDate: entry.date,
                 oldRating: entry.rating,
+                oldRemarks: entry.remarks,
                 title: title,
                 date: date,
                 rating: editRating,

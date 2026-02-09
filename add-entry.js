@@ -73,7 +73,7 @@ movieForm.addEventListener('submit', async (e) => {
         updateStars();
         
         setTimeout(() => {
-            window.location.href = 'index.html';
+            window.location.href = 'diary.html';
         }, 1500);
 
     } catch (error) {

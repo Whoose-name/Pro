@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Movie Diary - Read</title>
+    <link rel="stylesheet" href="diary.css">
+</head>
+<body>
+    <div class="diary-container">
+        <a href="landing.html" class="back-btn">← Back</a>
+        
+        <div id="loadingIndicator" class="loading">Loading your diary...</div>
+        
+        <div id="bookWrapper" class="book-wrapper" style="display: none;">
+            <button id="prevBtn" class="nav-btn prev-btn">‹</button>
+            
+            <div class="book-pages">
+                <div class="page left-page" id="leftPage">
+                    <div class="page-content" id="leftContent"></div>
+                </div>
+                <div class="page right-page" id="rightPage">
+                    <div class="page-content" id="rightContent"></div>
+                </div>
+            </div>
+            
+            <button id="nextBtn" class="nav-btn next-btn">›</button>
+        </div>
+        
+        <div class="controls">
+            <button id="sortBtn" class="sort-btn" style="display: none;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M11 5h10"></path>
+                    <path d="M11 9h7"></path>
+                    <path d="M11 13h4"></path>
+                    <path d="M3 17l3 3 3-3"></path>
+                    <path d="M6 18V4"></path>
+                </svg>
+                <span id="sortText">Newest First</span>
+            </button>
+            <div id="pageIndicator" class="page-indicator"></div>
+        </div>
+        
+        <div id="emptyState" class="empty-state" style="display: none;">
+            <p>Your diary is empty</p>
+            <a href="add-entry.html" class="add-first-btn">Write your first entry</a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="diary.js"></script>
+</body>
+</html>

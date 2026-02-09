@@ -28,6 +28,15 @@ function doGet(e) {
 function doPost(e) {
   try {
     const data = JSON.parse(e.postData.contents);
+    
+    if (data.action === 'delete') {
+      return deleteEntry(data);
+    }
+    
+    if (data.action === 'update') {
+      return updateEntry(data);
+    }
+    
     return addEntry(data);
   } catch (error) {
     return ContentService.createTextOutput(JSON.stringify({
@@ -101,6 +110,81 @@ function addEntry(data) {
     return ContentService.createTextOutput(JSON.stringify({
       success: true,
       message: 'Entry added successfully'
+    })).setMimeType(ContentService.MimeType.JSON);
+    
+  } catch (error) {
+    return ContentService.createTextOutput(JSON.stringify({
+      success: false,
+      message: error.toString()
+    })).setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+function deleteEntry(data) {
+  try {
+    const sheet = SpreadsheetApp.openById(SHEET_ID).getSheetByName(SHEET_NAME);
+    
+    if (!sheet) {
+      return ContentService.createTextOutput(JSON.stringify({
+        success: false,
+        message: 'Sheet not found'
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+    
+    const allData = sheet.getDataRange().getValues();
+    
+    // Find and delete the matching row
+    for (let i = allData.length - 1; i > 0; i--) {
+      if (allData[i][1] === data.title && 
+          allData[i][2] === data.date && 
+          allData[i][3] === data.rating) {
+        sheet.deleteRow(i + 1);
+        break;
+      }
+    }
+    
+    return ContentService.createTextOutput(JSON.stringify({
+      success: true,
+      message: 'Entry deleted successfully'
+    })).setMimeType(ContentService.MimeType.JSON);
+    
+  } catch (error) {
+    return ContentService.createTextOutput(JSON.stringify({
+      success: false,
+      message: error.toString()
+    })).setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+function updateEntry(data) {
+  try {
+    const sheet = SpreadsheetApp.openById(SHEET_ID).getSheetByName(SHEET_NAME);
+    
+    if (!sheet) {
+      return ContentService.createTextOutput(JSON.stringify({
+        success: false,
+        message: 'Sheet not found'
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+    
+    const allData = sheet.getDataRange().getValues();
+    
+    // Find and update the matching row
+    for (let i = allData.length - 1; i > 0; i--) {
+      if (allData[i][1] === data.oldTitle && 
+          allData[i][2] === data.oldDate && 
+          allData[i][3] === data.oldRating) {
+        sheet.getRange(i + 1, 2).setValue(data.title);
+        sheet.getRange(i + 1, 3).setValue(data.date);
+        sheet.getRange(i + 1, 4).setValue(data.rating);
+        sheet.getRange(i + 1, 5).setValue(data.remarks);
+        break;
+      }
+    }
+    
+    return ContentService.createTextOutput(JSON.stringify({
+      success: true,
+      message: 'Entry updated successfully'
     })).setMimeType(ContentService.MimeType.JSON);
     
   } catch (error) {

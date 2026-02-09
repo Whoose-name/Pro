@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Entry - Movie Diary</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📽️ My Movie Diary</h1>
+            <nav>
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="add-entry.html" class="nav-link active">Add Entry</a>
+            </nav>
+        </header>
+
+        <div class="add-movie-section">
+            <h2>Add New Entry</h2>
+            <form id="movieForm">
+                <input type="text" id="movieTitle" placeholder="Movie Title" required>
+                <input type="date" id="watchDate" required>
+                <div class="rating-input">
+                    <label>Rating:</label>
+                    <div class="stars" id="starRating">
+                        <span data-rating="1">☆</span>
+                        <span data-rating="2">☆</span>
+                        <span data-rating="3">☆</span>
+                        <span data-rating="4">☆</span>
+                        <span data-rating="5">☆</span>
+                    </div>
+                    <input type="hidden" id="rating" required>
+                </div>
+                <textarea id="remarks" placeholder="Your thoughts about the movie..." rows="4" required></textarea>
+                <button type="submit" id="submitBtn">Add to Diary</button>
+                <div id="statusMessage" class="status-message"></div>
+            </form>
+        </div>
+    </div>
+
+    <script src="add-entry.js"></script>
+</body>
+</html>

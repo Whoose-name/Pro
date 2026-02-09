@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Movie Diary - Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📽️ My Movie Diary</h1>
+            <nav>
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="add-entry.html" class="nav-link">Add Entry</a>
+            </nav>
+        </header>
+
+        <div class="diary-section">
+            <div class="section-header">
+                <h2>My Diary Entries</h2>
+                <div id="loadingIndicator" class="loading">Loading entries...</div>
+            </div>
+            <div id="diaryEntries"></div>
+        </div>
+    </div>
+
+    <script src="home.js"></script>
+</body>
+</html>

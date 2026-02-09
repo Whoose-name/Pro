@@ -1,3 +1,4 @@
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxWEX9C7oLio_0EIJrfE6WbVj38227ws058ikk-tDf_-zeIiIMLkD5d-UXqNsRvZcos/exec";
 const diaryEntries = document.getElementById('diaryEntries');
 const loadingIndicator = document.getElementById('loadingIndicator');
 function formatDate(dateString) {

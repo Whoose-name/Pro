@@ -1,5 +1,6 @@
 let selectedRating = 0;
 
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxWEX9C7oLio_0EIJrfE6WbVj38227ws058ikk-tDf_-zeIiIMLkD5d-UXqNsRvZcos/exec";
 const starRating = document.getElementById('starRating');
 const stars = starRating.querySelectorAll('span');
 const ratingInput = document.getElementById('rating');

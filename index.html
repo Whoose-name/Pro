@@ -3,28 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Movie Diary - Home</title>
-    <link rel="stylesheet" href="style.css">
+    <title>My Movie Diary</title>
+    <link rel="stylesheet" href="landing.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>📽️ My Movie Diary</h1>
-            <nav>
-                <a href="index.html" class="nav-link active">Home</a>
-                <a href="add-entry.html" class="nav-link">Add Entry</a>
-            </nav>
-        </header>
-
-        <div class="diary-section">
-            <div class="section-header">
-                <h2>My Diary Entries</h2>
-                <div id="loadingIndicator" class="loading">Loading entries...</div>
+    <div class="landing-container">
+        <h1 class="title">📽️ My Movie Diary</h1>
+        
+        <div class="desk">
+            <div class="book-container" id="bookContainer">
+                <div class="book" id="book">
+                    <div class="book-cover">
+                        <div class="book-title">Movie<br>Diary</div>
+                    </div>
+                    <div class="book-spine"></div>
+                </div>
+                <div class="book-shadow"></div>
             </div>
-            <div id="diaryEntries"></div>
+            
+            <div class="pen-container" id="penContainer">
+                <div class="pen">
+                    <div class="pen-tip"></div>
+                    <div class="pen-body"></div>
+                    <div class="pen-cap"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="instructions">
+            <p>Click the <strong>book</strong> to read your diary</p>
+            <p>Click the <strong>pen</strong> to write a new entry</p>
         </div>
     </div>
-    <script src="script.js"></script>
-    <script src="home.js"></script>
+
+    <script src="landing.js"></script>
 </body>
 </html>

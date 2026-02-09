@@ -76,27 +76,45 @@ function renderPages() {
     const leftIndex = currentPage * 2;
     const rightIndex = currentPage * 2 + 1;
     
-    // Render left page
-    if (leftIndex < entries.length) {
-        leftContent.innerHTML = renderEntry(entries[leftIndex], leftIndex);
+    // Check if mobile view
+    const isMobile = window.innerWidth <= 768;
+    
+    if (isMobile) {
+        // Mobile: show one entry per page
+        if (leftIndex < entries.length) {
+            leftContent.innerHTML = renderEntry(entries[leftIndex], leftIndex);
+        } else {
+            leftContent.innerHTML = '';
+        }
+        
+        // Update navigation for mobile (one entry at a time)
+        prevBtn.disabled = currentPage === 0;
+        nextBtn.disabled = leftIndex >= entries.length - 1;
+        
+        // Update page indicator
+        pageIndicator.textContent = `Entry ${leftIndex + 1} of ${entries.length}`;
     } else {
-        leftContent.innerHTML = '';
+        // Desktop: show two entries per page
+        if (leftIndex < entries.length) {
+            leftContent.innerHTML = renderEntry(entries[leftIndex], leftIndex);
+        } else {
+            leftContent.innerHTML = '';
+        }
+        
+        if (rightIndex < entries.length) {
+            rightContent.innerHTML = renderEntry(entries[rightIndex], rightIndex);
+        } else {
+            rightContent.innerHTML = '';
+        }
+        
+        // Update navigation buttons
+        prevBtn.disabled = currentPage === 0;
+        nextBtn.disabled = (currentPage * 2 + 2) >= entries.length;
+        
+        // Update page indicator
+        const totalPages = Math.ceil(entries.length / 2);
+        pageIndicator.textContent = `Page ${currentPage + 1} of ${totalPages}`;
     }
-    
-    // Render right page
-    if (rightIndex < entries.length) {
-        rightContent.innerHTML = renderEntry(entries[rightIndex], rightIndex);
-    } else {
-        rightContent.innerHTML = '';
-    }
-    
-    // Update navigation buttons
-    prevBtn.disabled = currentPage === 0;
-    nextBtn.disabled = (currentPage * 2 + 2) >= entries.length;
-    
-    // Update page indicator
-    const totalPages = Math.ceil(entries.length / 2);
-    pageIndicator.textContent = `Page ${currentPage + 1} of ${totalPages}`;
 }
 
 async function deleteEntry(index) {
@@ -295,10 +313,22 @@ prevBtn.addEventListener('click', () => {
 });
 
 nextBtn.addEventListener('click', () => {
-    if ((currentPage * 2 + 2) < entries.length) {
+    const isMobile = window.innerWidth <= 768;
+    const maxPage = isMobile ? entries.length - 1 : Math.ceil(entries.length / 2) - 1;
+    
+    if (currentPage < maxPage) {
         currentPage++;
         renderPages();
     }
+});
+
+// Re-render on window resize
+let resizeTimer;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+        renderPages();
+    }, 250);
 });
 
 // Keyboard navigation

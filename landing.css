@@ -195,14 +195,24 @@ body {
     .desk {
         width: 100%;
         height: 300px;
-        transform: scale(0.7);
+        transform: scale(0.8);
     }
     
     .title {
         font-size: 2em;
+        margin-bottom: 30px;
     }
     
     .instructions {
         font-size: 1em;
+        margin-top: 40px;
+    }
+    
+    .book-container {
+        left: 20px;
+    }
+    
+    .pen-container {
+        right: 40px;
     }
 }

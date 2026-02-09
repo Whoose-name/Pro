@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Georgia', serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #f4e4c1;
     min-height: 100vh;
     padding: 20px;
 }
@@ -18,13 +18,13 @@ body {
 
 header {
     text-align: center;
-    color: white;
+    color: #8B4513;
     margin-bottom: 30px;
 }
 
 header h1 {
     font-size: 2.5em;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.2);
     margin-bottom: 20px;
 }
 
@@ -35,23 +35,26 @@ nav {
 }
 
 .nav-link {
-    color: white;
+    color: #8B4513;
     text-decoration: none;
     padding: 10px 25px;
     border-radius: 25px;
-    background: rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.6);
     transition: all 0.3s;
     font-weight: 500;
+    border: 2px solid transparent;
 }
 
 .nav-link:hover {
-    background: rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.9);
     transform: translateY(-2px);
+    border-color: #8B4513;
 }
 
 .nav-link.active {
     background: white;
-    color: #667eea;
+    color: #654321;
+    border-color: #8B4513;
 }
 
 .add-movie-section {
@@ -115,7 +118,7 @@ textarea:focus {
 }
 
 button {
-    background: #667eea;
+    background: #8B4513;
     color: white;
     padding: 12px 24px;
     border: none;
@@ -126,7 +129,7 @@ button {
 }
 
 button:hover {
-    background: #5568d3;
+    background: #654321;
 }
 
 .diary-section {
@@ -139,12 +142,12 @@ button:hover {
 }
 
 .diary-section h2 {
-    color: white;
+    color: #8B4513;
     margin-bottom: 15px;
 }
 
 .loading {
-    color: white;
+    color: #8B4513;
     font-style: italic;
     opacity: 0.8;
 }
@@ -232,7 +235,7 @@ button:hover {
 
 .empty-state {
     text-align: center;
-    color: white;
+    color: #8B4513;
     font-size: 1.2em;
     padding: 40px;
     opacity: 0.8;

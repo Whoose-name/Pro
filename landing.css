@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Georgia', serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #f4e4c1;
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -19,10 +19,10 @@ body {
 }
 
 .title {
-    color: white;
+    color: #8B4513;
     font-size: 3em;
     margin-bottom: 50px;
-    text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+    text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.2);
     animation: fadeIn 1s ease-in;
 }
 
@@ -67,15 +67,15 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 20px;
 }
 
-.book-title {
-    color: #f4e4c1;
-    font-size: 2em;
-    font-weight: bold;
-    text-align: center;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-    letter-spacing: 2px;
+.book-logo {
+    width: 80%;
+    height: auto;
+    max-width: 200px;
+    object-fit: contain;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5));
 }
 
 .book-spine {
@@ -165,18 +165,19 @@ body {
 
 .instructions {
     margin-top: 80px;
-    color: white;
+    color: #8B4513;
     font-size: 1.2em;
     animation: fadeIn 2s ease-in;
 }
 
 .instructions p {
     margin: 10px 0;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    text-shadow: 1px 1px 2px rgba(139, 69, 19, 0.1);
 }
 
 .instructions strong {
-    color: #ffd700;
+    color: #654321;
+    font-weight: bold;
 }
 
 @keyframes fadeIn {
